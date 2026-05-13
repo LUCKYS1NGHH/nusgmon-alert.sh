@@ -29,8 +29,8 @@ cp -r icons ~/.local/share/nusgmon-alert
 
 ```bash
 # check download every 2 min (default)
-*/2 * * * * /usr/local/bin/nusgmon-alert
+*/2 * * * * /usr/local/bin/nusgmon-alert.sh
 
 # check upload in GB every 2 min
-*/2 * * * * /usr/local/bin/nusgmon-alert up
+*/2 * * * * /usr/local/bin/nusgmon-alert.sh up
 ```
