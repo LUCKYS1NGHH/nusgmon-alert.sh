@@ -35,3 +35,9 @@ cp -r icons ~/.local/share/nusgmon-alert
 # check upload in GB every 2 min
 */2 * * * * /usr/local/bin/nusgmon-alert.sh up
 ```
+
+---
+
+### Reporting issues
+
+If you are facing any issue with it, Please open GitHub issue with relevant details.
