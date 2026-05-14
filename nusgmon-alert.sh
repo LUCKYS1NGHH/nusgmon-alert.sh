@@ -51,3 +51,11 @@ for threshold in "${thresholds[@]}"; do
         break
     fi
 done
+
+
+# =====================================================
+# nusgmon-alert.sh - Sends Data Usage Alerts
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Author: LUCKYS1NGHH
+# Repo: https://github.com/LUCKYS1NGHH/nusgmon-alert.sh
+# ======================================================
