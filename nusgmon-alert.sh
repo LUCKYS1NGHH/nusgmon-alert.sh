@@ -35,7 +35,7 @@ heading="Bandwidth Alert"
 
 # run commands
 comm=$($nusgmon --today --json)
-value=$(echo "$comm" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['total'][0]['up'])")
+value=$(echo "$comm" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['total'][0]['$usage_type'])")
 
 thresholds=(5120 4096 3072 2048 1024 500 100) # add more if you want
 
