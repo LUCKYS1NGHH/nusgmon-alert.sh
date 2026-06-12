@@ -14,7 +14,7 @@ fi
 
 # set few more important env
 export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$UID_NUM/bus
-export PATH="/usr/sbin:/usr/bin:/bin:$PATH"
+export PATH="/usr/local/bin:/bin:$HOME/.local/bin:$PATH"
 
 # user home directory
 PREFIX=/home/$(id -un)
