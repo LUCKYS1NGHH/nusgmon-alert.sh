@@ -5,7 +5,7 @@ UID_NUM=$(id -u)
 export XDG_RUNTIME_DIR=/run/user/$UID_NUM
 
 # set environment variables according display server (X11/Wayland)
-if [ -n "$(pgrep -u $(id -u) [Xx]org)" ]; then
+if [ "$XDG_SESSION_TYPE" == "x11" ]; then
    export DISPLAY=$(who | grep -m1 '(:' | grep -oP '\(:\K[^)]+' | sed 's/^/:/')
    export XAUTHORITY=$(find /home -name '.Xauthority' -user $(id -un) 2>/dev/null | head -1)
 else
