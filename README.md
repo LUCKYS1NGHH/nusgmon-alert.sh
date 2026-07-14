@@ -12,9 +12,9 @@
 ### Install
 
 ```bash
-git clone --depth=1 https://github.com/LUCKYS1NGHH/nusgmon-alert.sh
-cd nusgmon-alert.sh
-sudo cp nusgmon-alert.sh /usr/local/bin/nusgmon-alert.sh
+git clone --depth=1 https://github.com/LUCKYS1NGHH/nusgmon-alert.sh nusgmon-alert
+cd nusgmon-alert
+sudo cp nusgmon-alert.sh /usr/local/bin
 sudo chmod +x /usr/local/bin/nusgmon-alert.sh
 mkdir -p ~/.local/share/nusgmon-alert
 cp -r icons ~/.local/share/nusgmon-alert
