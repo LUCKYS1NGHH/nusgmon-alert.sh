@@ -1,5 +1,7 @@
 #!/bin/bash
 
+err_output_file=/tmp/nusgmon_alert_error
+
 # get UID and set runtime DIR
 UID_NUM=$(id -u)
 export XDG_RUNTIME_DIR=/run/user/$UID_NUM
@@ -23,6 +25,19 @@ PREFIX=/home/$(id -un)
 nusgmon=$(command -v nusgmon)
 notify=$(command -v notify-send)
 
+
+# check for command tools existence
+if [ -z "$nusgmon" ]; then
+   echo "nusgmon not found" | tee $err_output_file
+   exit 1
+fi
+
+if [ -z "$notify" ]; then
+   echo "notify not found" | tee $err_output_file
+   exit 1
+fi
+
+
 # get down/up and mb/gb args
 _usage_type="$1"
 _unit="$2"
@@ -33,11 +48,27 @@ usage_unit=${_unit:-MB}
 icon=$PREFIX/.local/share/nusgmon-alert/icons/cellular-network.png
 heading="Bandwidth Alert"
 
-# run commands
+# run nusgmon to get today usage and then check output
 comm=$($nusgmon --today --json)
+nusgmon_exitcode=$?
+
+if [ -z $nusgmon_exitcode ]; then
+     echo "something wrong with nusgmon" | tee $err_output_file
+     exit 1
+fi
+
+# run python to extract today usage from the json and then check output
 value=$(echo "$comm" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['total'][0]['$usage_type'])")
+value_exitcode=$?
+
+if [ -z $value_exitcode ]; then
+     echo "something wrong with python to extract values from json" | tee $err_output_file
+     exit 1
+fi
+
 
 thresholds=(5120 4096 3072 2048 1024 500 100) # add more if you want
+
 
 # notify once per threshold breach, highest unnotified first
 for threshold in "${thresholds[@]}"; do
