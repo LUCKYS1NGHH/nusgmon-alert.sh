@@ -46,7 +46,7 @@ usage_unit=${_unit:-MB}
 
 # set alert info
 icon=$PREFIX/.local/share/nusgmon-alert/icons/cellular-network.png
-heading="Bandwidth Alert"
+heading="Data Alert"
 
 # run nusgmon to get today usage and then check output
 comm=$($nusgmon --today --json)
